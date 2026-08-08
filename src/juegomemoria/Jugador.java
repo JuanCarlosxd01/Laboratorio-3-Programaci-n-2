@@ -1,13 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package juegomemoria;
 
-/**
- *
- * @author nosoy
- */
+
 public class Jugador {
     
+    private String usuario;
+    private int aciertos;
+    
+    public Jugador(String usuario){
+        this.usuario = usuario;
+        this.aciertos = 0;
+    }
+    
+    public int getAciertos(){
+        return aciertos;
+    }
+    
+    public String getUsuario(){
+        return usuario;
+    }
+    
+    public void sumarAciertos(){
+        aciertos++;
+    }
+    
+    public String toString(){
+        return "Usuario: " + usuario + " - Aciertos: " + aciertos;
+    }
 }
