@@ -11,6 +11,10 @@ public class Jugador {
         this.usuario = usuario;
         this.aciertos = 0;
     }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
     
     public int getAciertos(){
         return aciertos;

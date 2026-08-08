@@ -38,8 +38,8 @@ public class Tablero extends JPanel{
     private Jugador j2;
     
     public Tablero(String nombre1, String nombre2) {
-        j1.setUsuario(nombre1);
-        j2.setUsuario(nombre2);
+        Jugador jugador1 = new Jugador(nombre1);
+        Jugador jugador2 = new Jugador(nombre2);
         setPreferredSize(new Dimension(800, 800));
         setLayout(new BorderLayout());
         cargarImagenes();
