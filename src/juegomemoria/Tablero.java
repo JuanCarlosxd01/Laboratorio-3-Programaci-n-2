@@ -33,13 +33,18 @@ public class Tablero extends JPanel{
     private ImageIcon reves;
     private Font fuente = new Font("Castellar", Font.BOLD, 15);
     private List<ImageIcon> cartas = new ArrayList<>();
-
+    private Partida partida;
+    private Jugador j1;
+    private Jugador j2;
+    
     public Tablero(String nombre1, String nombre2) {
-
+        j1.setUsuario(nombre1);
+        j2.setUsuario(nombre2);
         setPreferredSize(new Dimension(800, 800));
         setLayout(new BorderLayout());
         cargarImagenes();
         JPanel superior = new JPanel();
+        partida = new Partida(j1, j2, 12);
         superior.setLayout(  new FlowLayout( FlowLayout.CENTER, 30, 10) );
 
         superior.setPreferredSize(new Dimension(600, 40) );
@@ -90,6 +95,7 @@ public class Tablero extends JPanel{
                     final int c = columna;
                     celda.addActionListener(e -> {
                         celda.setIcon(tablero[f][c]);
+                       
                     });
                     posicionCarta++;
                 } else {
