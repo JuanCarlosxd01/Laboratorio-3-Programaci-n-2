@@ -38,7 +38,7 @@ public class Partida {
     }
 
 
-    public boolean seleccionarCarta(Carta carta) {
+    public boolean seleccionarCarta(Cartas carta) {
         if (partidaTerminada) {
             return false;
         }
@@ -95,7 +95,7 @@ public class Partida {
 
 
     private void finPartida() {
-        if (parejasEncontradas == totalParejas) {
+        if (paresEncontrados == totalParejas) {
             partidaTerminada = true;
         }
     }

@@ -7,6 +7,7 @@ public class datosCarta extends Cartas {
         this.idCarta = idCarta;
         this.nombre = nombre;
         this.estaOculta = true;
+        this.emparejada = false;
         cargarImagenes(nombre);
     }
 

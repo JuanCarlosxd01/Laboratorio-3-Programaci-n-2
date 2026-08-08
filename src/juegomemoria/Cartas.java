@@ -9,18 +9,27 @@ public abstract class Cartas{
     protected BufferedImage imagen;
     protected BufferedImage imagenAtras;
     protected boolean estaOculta;
+    protected boolean emparejada;
     protected int idCarta;
 
     public void ocultar(){
         estaOculta=true;
     }
 
-    public void revelar(){
+    public void mostrar(){
         estaOculta=false;
     }
 
     public boolean estaOculta(){
         return estaOculta;
+    }
+    
+    public boolean estaEmparejada() {
+        return emparejada;
+    }
+
+    public void setEmparejada(boolean valor) {
+        emparejada = valor;
     }
 
     public int getIdCarta() {
@@ -39,6 +48,10 @@ public abstract class Cartas{
 
     public BufferedImage getImagen() {
         return estaOculta ? imagenAtras : imagen;
+    }
+    
+     public boolean esPareja(Cartas otra) {
+        return coincide(otra);
     }
 
     public abstract boolean coincide(Cartas otra);

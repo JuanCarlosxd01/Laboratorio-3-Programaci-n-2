@@ -28,7 +28,8 @@ public class Tablero extends JPanel{
     private JLabel tiempo;
     private ImageIcon[][] tablero=new ImageIcon[6][6];
     private String [] imagenes={"/Images/1.png","/Images/2.png","/Images/3.png","/Images/4.png","/Images/5.png","/Images/6.png","/Images/7.png","/Images/8.png","/Images/9.png",
-     "/Images/10.png", "/Images/11.png", };
+     "/Images/10.png", "/Images/11.png", 
+    };
     private ImageIcon reves;
     private Font fuente = new Font("Castellar", Font.BOLD, 15);
     private List<ImageIcon> cartas = new ArrayList<>();
