@@ -14,7 +14,8 @@ public class JuegoMemoria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Inicio p1= new Inicio();
+        p1.mostrar();
     }
     
 }
