@@ -27,158 +27,86 @@ public class Tablero extends JPanel{
     private JLabel labelJugador2;
     private JLabel tiempo;
     private ImageIcon[][] tablero=new ImageIcon[6][6];
-    private String [] imagenes={"/Images/1.png","/Images/2.png","/Images/3.png","/Images/4.png","/Images/5.png","/Images/6.png","/Images/7.png","/Images/8.png","/Images/9.png"};
+    private String [] imagenes={"/Images/1.png","/Images/2.png","/Images/3.png","/Images/4.png","/Images/5.png","/Images/6.png","/Images/7.png","/Images/8.png","/Images/9.png",
+     "/Images/10.png", "/Images/11.png", };
     private ImageIcon reves;
     private Font fuente = new Font("Castellar", Font.BOLD, 15);
     private List<ImageIcon> cartas = new ArrayList<>();
 
     public Tablero(String nombre1, String nombre2) {
 
-    setPreferredSize(new Dimension(800, 800));
-    setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(800, 800));
+        setLayout(new BorderLayout());
+        cargarImagenes();
+        JPanel superior = new JPanel();
+        superior.setLayout(  new FlowLayout( FlowLayout.CENTER, 30, 10) );
 
-    cargarImagenes();
+        superior.setPreferredSize(new Dimension(600, 40) );
 
-    // =========================
-    // PANEL SUPERIOR
-    // =========================
+        superior.setOpaque(true);
+        superior.setBackground(Color.WHITE);
 
-    JPanel superior = new JPanel();
+        labelJugador1 = new JLabel("Jugador 1: " + nombre1);
+        labelJugador2 = new JLabel("Jugador 2: " + nombre2);
+        tiempo = new JLabel("Tiempo:");
 
-    superior.setLayout(
-            new FlowLayout(
-                    FlowLayout.CENTER,
-                    30,
-                    10
-            )
-    );
+        labelJugador1.setFont(fuente);
+        labelJugador2.setFont(fuente);
+        tiempo.setFont(fuente);
 
-    superior.setPreferredSize(
-            new Dimension(600, 40)
-    );
+        superior.add(labelJugador1);
+        superior.add(labelJugador2);
+        superior.add(tiempo);
 
-    superior.setOpaque(true);
-    superior.setBackground(Color.WHITE);
+        add( superior, BorderLayout.NORTH );
 
-    labelJugador1 =
-            new JLabel("Jugador 1: " + nombre1);
+        JPanel panelTablero = new JPanel();
 
-    labelJugador2 =
-            new JLabel("Jugador 2: " + nombre2);
+        panelTablero.setLayout(new GridLayout(filas,columnas,5,5));
 
-    tiempo =
-            new JLabel("Tiempo:");
+        panelTablero.setOpaque(false);
+        List<Boolean> posiciones = new ArrayList<>();
 
-    labelJugador1.setFont(fuente);
-    labelJugador2.setFont(fuente);
-    tiempo.setFont(fuente);
-
-    superior.add(labelJugador1);
-    superior.add(labelJugador2);
-    superior.add(tiempo);
-
-    add(
-            superior,
-            BorderLayout.NORTH
-    );
-
-    // =========================
-    // PANEL TABLERO
-    // =========================
-
-    JPanel panelTablero = new JPanel();
-
-    panelTablero.setLayout(
-            new GridLayout(
-                    filas,
-                    columnas,
-                    5,
-                    5
-            )
-    );
-
-    panelTablero.setOpaque(false);
-
-    // =========================
-    // POSICIONES
-    // =========================
-
-    List<Boolean> posiciones =
-            new ArrayList<>();
-
-    // 18 posiciones con cartas
-    for (int i = 0; i < 18; i++) {
-        posiciones.add(true);
-    }
-
-    // 18 posiciones vacías
-    for (int i = 0; i < 18; i++) {
-        posiciones.add(false);
-    }
-
-    // Mezclar las posiciones
-    Collections.shuffle(posiciones);
-
-    int posicionCarta = 0;
-
-    // =========================
-    // CREAR TABLERO
-    // =========================
-
-    for (int fila = 0; fila < filas; fila++) {
-
-    for (int columna = 0; columna < columnas; columna++) {
-
-        JButton celda = new JButton();
-
-        celda.setPreferredSize(
-                new Dimension(120, 120)
-        );
-
-        int posicion = fila * columnas + columna;
-
-        if (posiciones.get(posicion)) {
-
-            // Es una casilla con carta
-            tablero[fila][columna] =
-                    cartas.get(posicionCarta);
-
-            // Mostrar reverso
-            celda.setIcon(reves);
-
-            final int f = fila;
-            final int c = columna;
-
-            celda.addActionListener(e -> {
-
-                // Cambiar reverso por la imagen
-                celda.setIcon(tablero[f][c]);
-
-            });
-
-            posicionCarta++;
-
-        } else {
-
-            // Es una casilla vacía
-            celda.setIcon(null);
-
-            // NO deshabilitamos el botón
+        for (int i = 0; i < 22; i++) {
+            posiciones.add(true);
         }
 
-        panelTablero.add(celda);
-    }
-}
+        for (int i = 0; i < 14; i++) {
+            posiciones.add(false);
+        }
+        Collections.shuffle(posiciones);
+        int posicionCarta = 0;
+        for (int fila = 0; fila < filas; fila++) {
 
-    add(
-            panelTablero,
-            BorderLayout.CENTER
-    );
-}
+            for (int columna = 0; columna < columnas; columna++) {
+                JButton celda = new JButton();
+                celda.setPreferredSize(new Dimension(120, 120));
+                celda.setIcon(reves);
+                int posicion = fila * columnas + columna;
+                if (posiciones.get(posicion)) {
+                    tablero[fila][columna] = cartas.get(posicionCarta);
+                    final int f = fila;
+                    final int c = columna;
+                    celda.addActionListener(e -> {
+                        celda.setIcon(tablero[f][c]);
+                    });
+                    posicionCarta++;
+                } else {
+                    celda.addActionListener(e -> {
+                        celda.setIcon(null);
+                        celda.setBackground(Color.WHITE);
+                    });
+                }
+                panelTablero.add(celda);
+            }
+        }
+
+        add(panelTablero,BorderLayout.CENTER);
+    }
     
     private void cargarImagenes(){
          reves = new ImageIcon(getClass().getResource("/Images/1.png"));
-         Image imagenEscalada = reves.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);reves = new ImageIcon(imagenEscalada);
+         Image imagenEscalada = reves.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
          reves = new ImageIcon(imagenEscalada);
          
          for (String ruta : imagenes) { 
