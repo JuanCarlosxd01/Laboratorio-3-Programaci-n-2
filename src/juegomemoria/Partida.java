@@ -7,8 +7,8 @@ public class Partida {
     private Jugador jugador2;
     private Jugador jugadorTurno;
 
-    private Carta primeraCarta;
-    private Carta segundaCarta;
+    private Cartas primeraCarta;
+    private Cartas segundaCarta;
 
     private int paresEncontrados;
     private int totalParejas;
